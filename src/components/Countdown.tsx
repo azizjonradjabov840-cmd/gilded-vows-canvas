@@ -98,13 +98,38 @@ export function Countdown() {
             {t("countdown.done")}
           </p>
         ) : (
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-6 max-w-md mx-auto">
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 max-w-md mx-auto">
             {blocks.map((b) => (
-              <div key={b.label} className="flex flex-col items-center">
-                <div className="font-serif text-[58px] sm:text-[64px] leading-none text-[var(--crimson)] font-semibold">
+              <div
+                key={b.label}
+                className="flex flex-col items-center"
+                style={{
+                  background: "white",
+                  borderRadius: "16px",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
+                  padding: "20px 12px",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "64px",
+                    lineHeight: 1,
+                    color: "#C0392B",
+                  }}
+                >
                   <FlipNumber value={b.value} />
                 </div>
-                <div className="mt-2 text-[11px] tracking-[0.28em] text-[var(--ink)]/60 uppercase">
+                <div
+                  style={{
+                    marginTop: "8px",
+                    fontSize: "10px",
+                    letterSpacing: "0.2em",
+                    color: "#aaa",
+                    textTransform: "uppercase",
+                  }}
+                >
                   {b.label}
                 </div>
               </div>

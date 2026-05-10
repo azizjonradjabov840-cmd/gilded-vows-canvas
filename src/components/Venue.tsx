@@ -35,7 +35,7 @@ export function Venue() {
             href={wedding.yandex}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-[52px] inline-flex items-center justify-center px-6 border border-[var(--crimson)] text-[var(--crimson)] uppercase tracking-[0.22em] text-xs font-medium hover:bg-[var(--crimson)] hover:text-white transition-colors"
+            className="map-btn w-full sm:w-auto inline-flex items-center justify-center uppercase font-medium"
           >
             {t("venue.yandex")}
           </a>
@@ -43,7 +43,7 @@ export function Venue() {
             href={wedding.google}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-[52px] inline-flex items-center justify-center px-6 border border-[var(--charcoal)] text-[var(--charcoal)] uppercase tracking-[0.22em] text-xs font-medium hover:bg-[var(--charcoal)] hover:text-white transition-colors"
+            className="map-btn w-full sm:w-auto inline-flex items-center justify-center uppercase font-medium"
           >
             {t("venue.google")}
           </a>
