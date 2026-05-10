@@ -43,7 +43,7 @@ export function MusicPlayer() {
   };
 
   return (
-    <div className="fixed top-3 left-3 z-[60] flex items-center gap-2">
+    <div className="fixed top-3 left-3 z-[90] flex items-center gap-2">
       <button
         onClick={toggleMusic}
         aria-label="Music toggle"
