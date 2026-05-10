@@ -32,13 +32,35 @@ export function Hero() {
       <Petals count={18} />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-end pb-16 px-6 text-white text-center">
-        <h2 className="font-serif gold-shimmer text-[56px] sm:text-[80px] leading-[0.95] tracking-[0.04em]">
+        <h2
+          className="font-serif text-[56px] sm:text-[80px] leading-[0.95] tracking-[0.04em]"
+          style={{
+            background:
+              "linear-gradient(90deg, #ffffff 0%, #D4AF37 35%, #ffffff 65%, #D4AF37 100%)",
+            backgroundSize: "300% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "shimmer-names 3s linear infinite",
+          }}
+        >
           {wedding.groom.toUpperCase()}
         </h2>
         <span className="font-serif italic text-white/85 text-xl sm:text-2xl my-1">
           {t("hero.and")}
         </span>
-        <h2 className="font-serif gold-shimmer text-[56px] sm:text-[80px] leading-[0.95] tracking-[0.04em]">
+        <h2
+          className="font-serif text-[56px] sm:text-[80px] leading-[0.95] tracking-[0.04em]"
+          style={{
+            background:
+              "linear-gradient(90deg, #ffffff 0%, #D4AF37 35%, #ffffff 65%, #D4AF37 100%)",
+            backgroundSize: "300% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "shimmer-names 3s linear infinite",
+          }}
+        >
           {wedding.bride.toUpperCase()}
         </h2>
 

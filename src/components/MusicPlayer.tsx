@@ -1,41 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Howl } from "howler";
 import { useTranslation } from "react-i18next";
 
 export function MusicPlayer() {
   const { t } = useTranslation();
-  const [howl, setHowl] = useState<Howl | null>(null);
+  const howlRef = useRef<Howl | null>(null);
   const [playing, setPlaying] = useState(false);
   const [showTip, setShowTip] = useState(true);
 
   useEffect(() => {
-    const sound = new Howl({
+    howlRef.current = new Howl({
       src: ["https://res.cloudinary.com/dcdxc0l6x/video/upload/34685_fxe7ct.mp3"],
       html5: true,
       loop: true,
       volume: 0,
       format: ["mp3"],
-      onloaderror: (_id, err) => console.error("Load error:", err),
-      onplayerror: (_id, err) => console.error("Play error:", err),
     });
-    setHowl(sound);
     const id = setTimeout(() => setShowTip(false), 3500);
     return () => {
       clearTimeout(id);
-      sound.unload();
+      howlRef.current?.unload();
     };
   }, []);
 
-  const toggleMusic = () => {
+  const toggle = () => {
     setShowTip(false);
-    if (!howl) return;
+    const h = howlRef.current;
+    if (!h) return;
     if (playing) {
-      howl.fade(howl.volume(), 0, 800);
-      setTimeout(() => howl.pause(), 820);
+      h.fade(h.volume(), 0, 800);
+      setTimeout(() => h.pause(), 820);
       setPlaying(false);
     } else {
-      howl.play();
-      howl.fade(0, 0.7, 800);
+      h.play();
+      h.fade(0, 0.75, 800);
       setPlaying(true);
     }
   };
@@ -43,7 +41,7 @@ export function MusicPlayer() {
   return (
     <div className="fixed top-3 left-3 z-[60] flex items-center gap-2">
       <button
-        onClick={toggleMusic}
+        onClick={toggle}
         aria-label="Music toggle"
         className={`relative w-[52px] h-[52px] rounded-full grid place-items-center transition-colors ${
           playing
