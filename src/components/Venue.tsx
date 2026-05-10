@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { HallSVG } from "./decorations";
 import { wedding } from "@/config/wedding";
+import weddingHall3d from "@/assets/luxury-wedding-hall-3d.png";
 
 export function Venue() {
   const { t } = useTranslation();
@@ -12,10 +12,19 @@ export function Venue() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="max-w-xl mx-auto text-center"
+        className="max-w-2xl mx-auto text-center"
       >
-        <HallSVG className="mx-auto" size={340} />
-        <h2 className="font-serif text-[34px] sm:text-[48px] italic mt-6">
+        <div className="luxury-venue-frame mx-auto">
+          <img
+            src={weddingHall3d}
+            alt="Hashamatli to'yxona"
+            width={1024}
+            height={768}
+            loading="lazy"
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <h2 className="font-serif text-[34px] sm:text-[48px] italic mt-7">
           {t("venue.title")}
         </h2>
         <p className="mt-6 font-serif text-2xl sm:text-3xl tracking-wide">
