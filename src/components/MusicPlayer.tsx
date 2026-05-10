@@ -28,12 +28,12 @@ export function MusicPlayer() {
     const h = howlRef.current;
     if (!h) return;
     if (playing) {
-      h.fade(h.volume(), 0, 500);
-      setTimeout(() => h.pause(), 520);
+      h.fade(h.volume(), 0, 800);
+      setTimeout(() => h.pause(), 820);
       setPlaying(false);
     } else {
       h.play();
-      h.fade(0, 0.6, 500);
+      h.fade(0, 0.7, 800);
       setPlaying(true);
     }
   };

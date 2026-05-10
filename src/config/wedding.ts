@@ -6,5 +6,6 @@ export const wedding = {
   dateISO: "2026-06-07T18:00:00+05:00",
   yandex: "https://yandex.uz/maps/org/16670393879",
   google: "https://maps.app.goo.gl/SrsPjjANP6k3akSf6",
-  musicSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  musicSrc:
+    "https://res.cloudinary.com/dcdxc0l6x/video/upload/34685_fxe7ct.mp3",
 };
