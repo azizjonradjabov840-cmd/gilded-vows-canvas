@@ -47,10 +47,10 @@ export function MusicPlayer() {
       <button
         onClick={toggleMusic}
         aria-label="Music toggle"
-        className={`relative w-[52px] h-[52px] rounded-full grid place-items-center transition-colors ${
+        className={`music-button relative w-[52px] h-[52px] rounded-full grid place-items-center transition-colors ${
           playing
-            ? "bg-[var(--crimson)] text-white pulse-ring"
-            : "bg-[var(--charcoal)]/85 backdrop-blur text-white"
+            ? "music-button--playing pulse-ring"
+            : "music-button--idle backdrop-blur"
         }`}
       >
         <span className="text-xl leading-none">♪</span>
