@@ -200,6 +200,17 @@
 }
 .pulse-ring { animation: pulse-ring 1.8s ease-out infinite; }
 
+.music-button {
+  color: #ffffff;
+  box-shadow: 0 14px 32px rgba(26, 26, 26, 0.22), inset 0 0 0 1px rgba(255,255,255,0.16);
+}
+.music-button--idle {
+  background: rgba(26,26,26,0.86);
+}
+.music-button--playing {
+  background: #C0392B;
+}
+
 .map-btn {
   border: 1.5px solid #C0392B;
   color: #C0392B;
