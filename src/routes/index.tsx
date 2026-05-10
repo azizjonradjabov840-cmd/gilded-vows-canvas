@@ -31,11 +31,11 @@ function Index() {
 
   return (
     <main className="relative w-full overflow-x-hidden bg-[var(--cream)]">
+      <MusicPlayer />
       {!unlocked && <LockScreen onUnlock={() => setUnlocked(true)} />}
       {unlocked && (
         <>
           <LangSwitcher />
-          <MusicPlayer />
           <Hero />
           <InviteText />
           <Calendar />
