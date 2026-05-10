@@ -200,6 +200,18 @@
 }
 .pulse-ring { animation: pulse-ring 1.8s ease-out infinite; }
 
+.map-btn {
+  border: 1.5px solid #C0392B;
+  color: #C0392B;
+  border-radius: 999px;
+  height: 52px;
+  padding: 0 32px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.map-btn:hover { background: #C0392B; color: #ffffff; }
+
 @keyframes heart-pulse {
   0%,100% { transform: scale(1); }
   50% { transform: scale(1.15); }
