@@ -220,6 +220,11 @@
   background: radial-gradient(circle at 50% 22%, rgba(255,255,255,0.9), rgba(250,248,243,0.2) 58%, rgba(212,175,55,0.1));
   filter: drop-shadow(0 28px 36px rgba(91, 54, 26, 0.16));
 }
+.luxury-venue-frame--small {
+  width: min(100%, 340px);
+  border-radius: 22px;
+  filter: drop-shadow(0 18px 24px rgba(91, 54, 26, 0.14));
+}
 .luxury-rings-frame {
   width: min(100%, 310px);
   aspect-ratio: 2 / 1;
