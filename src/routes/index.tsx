@@ -42,17 +42,12 @@ function Index() {
           <Venue />
           <Countdown />
           <footer className="bg-[var(--cream)] py-10 px-6 text-center">
-            <div className="max-w-xs mx-auto border-t border-[#B4B2A9]/40 pt-5">
-              <p className="text-[11px] tracking-[0.15em] text-[#B4B2A9] uppercase">
-                BY INVITESTUDIO
-              </p>
-              <p
-                className="mt-3 text-[9px]"
-                style={{ color: "rgba(180,178,169,0.35)" }}
-              >
-                azizR.dev
-              </p>
-            </div>
+            <p
+              className="text-[9px] tracking-[0.1em] text-center select-none"
+              style={{ color: "rgba(180,178,169,0.28)" }}
+            >
+              azizR.dev
+            </p>
           </footer>
         </>
       )}
