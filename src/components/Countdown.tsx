@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import confetti from "canvas-confetti";
 import { wedding } from "@/config/wedding";
-import { RingsSVG } from "./decorations";
+import weddingRings3d from "@/assets/luxury-wedding-rings-3d.png";
 
 function calc(target: number) {
   const diff = Math.max(0, target - Date.now());
@@ -137,7 +137,16 @@ export function Countdown() {
           </div>
         )}
 
-        <RingsSVG className="mx-auto mt-12 w-[200px]" />
+        <div className="luxury-rings-frame mx-auto mt-12">
+          <img
+            src={weddingRings3d}
+            alt="Hashamatli nikoh uzuklari"
+            width={1024}
+            height={512}
+            loading="lazy"
+            className="w-full h-full object-contain"
+          />
+        </div>
       </motion.div>
     </section>
   );

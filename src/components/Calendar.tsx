@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { HallSVG } from "./decorations";
+import weddingHall3d from "@/assets/luxury-wedding-hall-3d.png";
 
 export function Calendar() {
   const { t } = useTranslation();
@@ -57,7 +57,16 @@ export function Calendar() {
           ))}
         </div>
 
-        <HallSVG className="mx-auto mt-12" size={280} />
+        <div className="luxury-venue-frame luxury-venue-frame--small mx-auto mt-12">
+          <img
+            src={weddingHall3d}
+            alt="Hashamatli to'yxona"
+            width={1024}
+            height={768}
+            loading="lazy"
+            className="w-full h-full object-contain"
+          />
+        </div>
       </motion.div>
     </section>
   );

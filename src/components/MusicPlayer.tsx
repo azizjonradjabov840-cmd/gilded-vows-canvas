@@ -1,52 +1,56 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Howl } from "howler";
 import { useTranslation } from "react-i18next";
 
 export function MusicPlayer() {
   const { t } = useTranslation();
-  const howlRef = useRef<Howl | null>(null);
+  const [howl, setHowl] = useState<Howl | null>(null);
   const [playing, setPlaying] = useState(false);
   const [showTip, setShowTip] = useState(true);
 
   useEffect(() => {
-    howlRef.current = new Howl({
+    const sound = new Howl({
       src: ["https://res.cloudinary.com/dcdxc0l6x/video/upload/34685_fxe7ct.mp3"],
       html5: true,
       loop: true,
       volume: 0,
       format: ["mp3"],
+      onloaderror: (id, err) => console.error("Load error:", err),
+      onplayerror: (id, err) => {
+        console.error("Play error:", err);
+        sound.once("unlock", () => sound.play());
+      },
     });
+    setHowl(sound);
     const id = setTimeout(() => setShowTip(false), 3500);
     return () => {
       clearTimeout(id);
-      howlRef.current?.unload();
+      sound.unload();
     };
   }, []);
 
-  const toggle = () => {
+  const toggleMusic = () => {
     setShowTip(false);
-    const h = howlRef.current;
-    if (!h) return;
     if (playing) {
-      h.fade(h.volume(), 0, 800);
-      setTimeout(() => h.pause(), 820);
+      howl?.fade(howl.volume(), 0, 800);
+      setTimeout(() => howl?.pause(), 820);
       setPlaying(false);
     } else {
-      h.play();
-      h.fade(0, 0.75, 800);
+      howl?.play();
+      howl?.fade(0, 0.7, 800);
       setPlaying(true);
     }
   };
 
   return (
-    <div className="fixed top-3 left-3 z-[60] flex items-center gap-2">
+    <div className="fixed top-3 left-3 z-[90] flex items-center gap-2">
       <button
-        onClick={toggle}
+        onClick={toggleMusic}
         aria-label="Music toggle"
-        className={`relative w-[52px] h-[52px] rounded-full grid place-items-center transition-colors ${
+        className={`music-button relative w-[52px] h-[52px] rounded-full grid place-items-center transition-colors ${
           playing
-            ? "bg-[var(--crimson)] text-white pulse-ring"
-            : "bg-[var(--charcoal)]/85 backdrop-blur text-white"
+            ? "music-button--playing pulse-ring"
+            : "music-button--idle backdrop-blur"
         }`}
       >
         <span className="text-xl leading-none">♪</span>

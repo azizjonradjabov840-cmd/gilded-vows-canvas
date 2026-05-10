@@ -31,11 +31,11 @@ function Index() {
 
   return (
     <main className="relative w-full overflow-x-hidden bg-[var(--cream)]">
+      <MusicPlayer />
       {!unlocked && <LockScreen onUnlock={() => setUnlocked(true)} />}
       {unlocked && (
         <>
           <LangSwitcher />
-          <MusicPlayer />
           <Hero />
           <InviteText />
           <Calendar />
@@ -43,8 +43,8 @@ function Index() {
           <Countdown />
           <footer className="bg-[var(--cream)] py-10 px-6 text-center">
             <p
-              className="text-[9px] tracking-[0.1em] text-center select-none"
-              style={{ color: "rgba(180,178,169,0.28)" }}
+              className="text-[10px] tracking-[0.12em] text-center select-none font-medium"
+              style={{ color: "rgba(120,105,82,0.46)" }}
             >
               azizR.dev
             </p>
