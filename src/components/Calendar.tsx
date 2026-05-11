@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import weddingHall3d from "@/assets/luxury-wedding-hall-3d.png";
+import { Tilt3D } from "./Tilt3D";
+import { AuroraBackground } from "./AuroraBackground";
+import { FloatingSparkles } from "./FloatingSparkles";
 
 export function Calendar() {
   const { t } = useTranslation();
@@ -13,7 +16,9 @@ export function Calendar() {
   while (cells.length % 7 !== 0) cells.push(null);
 
   return (
-    <section className="bg-[var(--cream)] text-[var(--ink)] px-5 py-20 sm:py-28">
+    <section className="fx-section bg-[var(--cream)] text-[var(--ink)] px-5 py-20 sm:py-28 overflow-hidden">
+      <AuroraBackground />
+      <FloatingSparkles count={16} />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -57,16 +62,18 @@ export function Calendar() {
           ))}
         </div>
 
-        <div className="luxury-venue-frame luxury-venue-frame--small mx-auto mt-12">
-          <img
-            src={weddingHall3d}
-            alt="Hashamatli to'yxona"
-            width={1024}
-            height={768}
-            loading="lazy"
-            className="w-full h-full object-contain"
-          />
-        </div>
+        <Tilt3D max={14} scale={1.05} className="mt-12 inline-block">
+          <div className="luxury-venue-frame luxury-venue-frame--small holo-shine mx-auto float-y">
+            <img
+              src={weddingHall3d}
+              alt="Hashamatli to'yxona"
+              width={1024}
+              height={768}
+              loading="lazy"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </Tilt3D>
       </motion.div>
     </section>
   );

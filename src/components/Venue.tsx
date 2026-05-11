@@ -2,11 +2,16 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { wedding } from "@/config/wedding";
 import weddingHall3d from "@/assets/luxury-wedding-hall-3d.png";
+import { Tilt3D } from "./Tilt3D";
+import { AuroraBackground } from "./AuroraBackground";
+import { FloatingSparkles } from "./FloatingSparkles";
 
 export function Venue() {
   const { t } = useTranslation();
   return (
-    <section className="bg-[var(--cream)] text-[var(--ink)] px-6 py-20 sm:py-28">
+    <section className="fx-section bg-[var(--cream)] text-[var(--ink)] px-6 py-20 sm:py-28 overflow-hidden">
+      <AuroraBackground />
+      <FloatingSparkles count={20} />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -14,16 +19,18 @@ export function Venue() {
         transition={{ duration: 0.9, ease: "easeOut" }}
         className="max-w-2xl mx-auto text-center"
       >
-        <div className="luxury-venue-frame mx-auto">
-          <img
-            src={weddingHall3d}
-            alt="Hashamatli to'yxona"
-            width={1024}
-            height={768}
-            loading="lazy"
-            className="w-full h-full object-contain"
-          />
-        </div>
+        <Tilt3D max={12} scale={1.04} className="mx-auto inline-block">
+          <div className="luxury-venue-frame holo-shine mx-auto float-y">
+            <img
+              src={weddingHall3d}
+              alt="Hashamatli to'yxona"
+              width={1024}
+              height={768}
+              loading="lazy"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </Tilt3D>
         <h2 className="font-serif text-[34px] sm:text-[48px] italic mt-7">
           {t("venue.title")}
         </h2>
@@ -44,7 +51,7 @@ export function Venue() {
             href={wedding.yandex}
             target="_blank"
             rel="noopener noreferrer"
-            className="map-btn w-full sm:w-auto inline-flex items-center justify-center uppercase font-medium"
+            className="map-btn magnetic w-full sm:w-auto inline-flex items-center justify-center uppercase font-medium"
           >
             {t("venue.yandex")}
           </a>
@@ -52,7 +59,7 @@ export function Venue() {
             href={wedding.google}
             target="_blank"
             rel="noopener noreferrer"
-            className="map-btn w-full sm:w-auto inline-flex items-center justify-center uppercase font-medium"
+            className="map-btn magnetic w-full sm:w-auto inline-flex items-center justify-center uppercase font-medium"
           >
             {t("venue.google")}
           </a>

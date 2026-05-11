@@ -288,3 +288,181 @@
   transition: transform 0.5s cubic-bezier(.4,2,.6,1);
 }
 .flip.flipping .flip-inner { transform: rotateX(360deg); }
+
+/* ============ 4D / cinematic effects ============ */
+
+/* 3D tilt wrapper */
+.tilt-3d { perspective: 1100px; display: block; }
+.tilt-3d__inner {
+  position: relative;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--s, 1));
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(.18,.89,.32,1.28);
+  will-change: transform;
+}
+.tilt-3d__glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.85;
+  border-radius: 16px;
+}
+
+/* Aurora animated gradient background */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.aurora-blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  animation: aurora-float 18s ease-in-out infinite;
+}
+.aurora-blob--1 {
+  background: radial-gradient(circle, rgba(212,175,55,0.55), transparent 65%);
+  top: -15%; left: -10%;
+}
+.aurora-blob--2 {
+  background: radial-gradient(circle, rgba(192,57,43,0.35), transparent 65%);
+  bottom: -20%; right: -15%;
+  animation-delay: -6s;
+  animation-duration: 22s;
+}
+.aurora-blob--3 {
+  background: radial-gradient(circle, rgba(255,210,170,0.55), transparent 65%);
+  top: 35%; left: 30%;
+  animation-delay: -12s;
+  animation-duration: 26s;
+}
+.aurora-grain {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.4;
+}
+@keyframes aurora-float {
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  33%     { transform: translate3d(6%, -4%, 0) scale(1.08); }
+  66%     { transform: translate3d(-5%, 6%, 0) scale(0.95); }
+}
+
+/* Floating sparkles */
+.sparkles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.sparkle {
+  position: absolute;
+  background: radial-gradient(circle, #fff 0%, #ffe9a8 35%, rgba(212,175,55,0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255,225,150,0.9));
+  animation: sparkle-float linear infinite;
+}
+@keyframes sparkle-float {
+  0%   { transform: translateY(20px) scale(0.6); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+}
+
+/* Countdown card glow + 3D entrance */
+.cd-card {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(150deg, rgba(255,255,255,0.96), rgba(250,248,243,0.85));
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 18px 40px -18px rgba(192,57,43,0.35),
+    0 6px 20px rgba(0,0,0,0.06),
+    inset 0 0 0 1px rgba(212,175,55,0.35);
+  overflow: hidden;
+  isolation: isolate;
+}
+.cd-card::before {
+  content: "";
+  position: absolute; inset: -2px;
+  background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.55), transparent 30%);
+  animation: ring-spin 6s linear infinite;
+  z-index: -1;
+  border-radius: inherit;
+}
+.cd-card::after {
+  content: "";
+  position: absolute; inset: 1.5px;
+  background: linear-gradient(150deg, #ffffff, #fdf9ee);
+  border-radius: 18px;
+  z-index: -1;
+}
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Continuous slow rotation for 3D rings */
+.rotate-slow {
+  animation: rotate-slow 18s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes rotate-slow {
+  0%,100% { transform: rotateY(0deg) rotateZ(0deg); }
+  50%     { transform: rotateY(18deg) rotateZ(-3deg); }
+}
+
+/* Holographic shine sweep */
+.holo-shine { position: relative; overflow: hidden; }
+.holo-shine::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255,255,255,0.55) 50%,
+    transparent 80%
+  );
+  transform: skewX(-18deg);
+  animation: shine-sweep 5s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+  0%   { left: -75%; }
+  60%  { left: 125%; }
+  100% { left: 125%; }
+}
+
+/* Floating idle motion */
+.float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+@keyframes float-y {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%     { transform: translateY(-12px) rotate(0.6deg); }
+}
+
+/* Magnetic pulse for buttons */
+.magnetic {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(.18,.89,.32,1.28), box-shadow 0.3s ease;
+}
+.magnetic:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 18px 32px -10px rgba(192,57,43,0.45);
+}
+
+/* Section-level relative wrapper so aurora positions correctly */
+.fx-section { position: relative; isolation: isolate; }
+.fx-section > * { position: relative; z-index: 1; }
+.fx-section > .aurora-bg,
+.fx-section > .sparkles { z-index: 0; }
