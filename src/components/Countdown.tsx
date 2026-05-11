@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 import confetti from "canvas-confetti";
 import { wedding } from "@/config/wedding";
 import weddingRings3d from "@/assets/luxury-wedding-rings-3d.png";
+import { Tilt3D } from "./Tilt3D";
+import { AuroraBackground } from "./AuroraBackground";
+import { FloatingSparkles } from "./FloatingSparkles";
 
 function calc(target: number) {
   const diff = Math.max(0, target - Date.now());
@@ -81,7 +84,9 @@ export function Countdown() {
   ];
 
   return (
-    <section className="bg-[var(--cream)] text-[var(--ink)] px-6 py-20 sm:py-28">
+    <section className="fx-section bg-[var(--cream)] text-[var(--ink)] px-6 py-20 sm:py-28 overflow-hidden">
+      <AuroraBackground />
+      <FloatingSparkles count={18} />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -99,18 +104,16 @@ export function Countdown() {
           </p>
         ) : (
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 max-w-md mx-auto">
-            {blocks.map((b) => (
-              <div
-                key={b.label}
-                className="flex flex-col items-center"
-                style={{
-                  background: "white",
-                  borderRadius: "16px",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
-                  padding: "20px 12px",
-                  textAlign: "center",
-                }}
-              >
+            {blocks.map((b, idx) => (
+              <Tilt3D key={b.label} max={18} scale={1.06}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30, rotateX: -25 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: idx * 0.12, ease: "easeOut" }}
+                  className="cd-card flex flex-col items-center"
+                  style={{ padding: "22px 12px", textAlign: "center" }}
+                >
                 <div
                   style={{
                     fontFamily: "var(--font-serif)",
@@ -132,21 +135,24 @@ export function Countdown() {
                 >
                   {b.label}
                 </div>
-              </div>
+                </motion.div>
+              </Tilt3D>
             ))}
           </div>
         )}
 
-        <div className="luxury-rings-frame mx-auto mt-12">
-          <img
-            src={weddingRings3d}
-            alt="Hashamatli nikoh uzuklari"
-            width={1024}
-            height={512}
-            loading="lazy"
-            className="w-full h-full object-contain"
-          />
-        </div>
+        <Tilt3D max={20} scale={1.05} className="mt-12 inline-block">
+          <div className="luxury-rings-frame holo-shine mx-auto">
+            <img
+              src={weddingRings3d}
+              alt="Hashamatli nikoh uzuklari"
+              width={1024}
+              height={512}
+              loading="lazy"
+              className="w-full h-full object-contain rotate-slow"
+            />
+          </div>
+        </Tilt3D>
       </motion.div>
     </section>
   );
