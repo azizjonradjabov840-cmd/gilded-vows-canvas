@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import couple from "@/assets/couple.jpg";
+import couple from "@/assets/couple-hero.jpg";
 import { Petals } from "./decorations";
 import { wedding } from "@/config/wedding";
 
@@ -22,11 +22,12 @@ export function Hero() {
         <img
           src={couple}
           alt={`${wedding.groom} & ${wedding.bride}`}
-          className="w-full h-full object-cover object-[center_top] kenburns"
+          className="w-full h-full object-cover object-center kenburns"
           loading="eager"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/80" />
+        <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 180px 40px rgba(0,0,0,0.75)" }} />
       </div>
 
       <Petals count={18} />
